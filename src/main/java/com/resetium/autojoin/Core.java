@@ -21,6 +21,7 @@ public class Core
 {
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
+    private static Boolean openedMultiplayer = false;
 
     /**
      * Loading function that runs when the game starts. Sets up everything else.
@@ -63,7 +64,8 @@ public class Core
     	LOGGER.debug("the guiscreen object making this is {}", gui.getClass());
     	TickHandler.clearQueue();
 		TickHandler.setScreen(gui);
-    	if (GuiStuff.isMainMenu(gui) && Config.COMMON.durationMainMenu.get() > 0) {
+    	if (GuiStuff.isMainMenu(gui) && Config.COMMON.durationMainMenu.get() > 0 && (!openedMultiplayer || Config.COMMON.doRetry.get())) {
+    		if (!Config.COMMON.doRetry.get()) openedMultiplayer = true;
     		TickHandler.openDelay(1, Config.COMMON.durationMainMenu.get());
     	} else if (GuiStuff.isMultiplayerMenu(gui)) {
     		TickHandler.setMultiplayerScreen((MultiplayerScreen) gui);

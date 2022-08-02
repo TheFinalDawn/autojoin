@@ -118,6 +118,7 @@ public final class Config {
 		public final ForgeConfigSpec.ConfigValue<Boolean> targetAutoLogin;
 		
 		public final ForgeConfigSpec.ConfigValue<Boolean> enabled;
+		public final ForgeConfigSpec.ConfigValue<Boolean> doRetry;
 		
 		
 		
@@ -161,9 +162,13 @@ public final class Config {
 				
 			builder.pop();
 			
-			/* builder.push("Miscellaneous") // I have yet to add this stuff
+			builder.push("Miscellaneous")
 				.comment("We're all control freaks at heart");
-				startWithMultiplayerMenu = builder
+			
+				doRetry = builder
+						.comment("If this is disabled, we will only try to open Multiplayer once from the main menu.")
+						.define("Retry Opening Multiplayer From Main Menu", true);
+			/*  startWithMultiplayerMenu = builder // These aren't implemented yet
 						.comment("Immediately load the multiplayer menu upon start?")
 						.translation(Reference.MODID+".config.miscellaneous.startwithmultiplayermenu")
 						.define("Open Multiplayer on Startup", true);
@@ -174,9 +179,9 @@ public final class Config {
 				ignorePopulation = builder
 						.comment("Should we ignore if the server's full and try to join anyway?")
 						.translation(Reference.MODID+".config.miscellaneous.ignorepopulation")
-						.define("Ignore Populated", true);
+						.define("Ignore Populated", true); */
 		
-			builder.pop(); */
+			builder.pop();
 			
 			builder.push("Targeting")
 				.comment("Please select a target. Please select a target. Please sele- you get the point.");
